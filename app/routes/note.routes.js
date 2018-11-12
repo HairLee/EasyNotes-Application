@@ -1,5 +1,6 @@
 module.exports = (app) => {
     const notes = require('../controllers/note.controller.js');
+    const message = require('../controllers/chat.controller.js');
 
     // Create a new Note
     app.post('/notes', notes.create);
@@ -15,4 +16,14 @@ module.exports = (app) => {
 
     // Delete a Note with noteId
     app.delete('/notes/:noteId', notes.delete);
+
+
+    //Chatting
+    app.post('/message', message.create);
+
+    app.get('/getallmessages', message.findAll);
+
+    app.get('/home',function(req,res){
+            res.render("home")
+    });
 }
