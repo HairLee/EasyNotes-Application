@@ -7,8 +7,6 @@ const app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
-app.set("view engine", "ejs")
-app.set("views","./view")
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }))
 
@@ -38,8 +36,12 @@ app.get('/', (req, res) => {
 require('./app/routes/note.routes.js')(app);
 
 // listen for requests
-app.listen(3000, () => {
-    console.log("Server is listening on port 3000");
+// app.listen(3000, () => {
+//     console.log("Server is listening on port 3000");
+// });
+
+http.listen(3000, function(){
+  console.log('listening on *:3000');
 });
 
 io.on('connection', function(socket){
